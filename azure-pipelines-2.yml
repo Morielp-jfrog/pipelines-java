@@ -12,13 +12,21 @@ pool:
   name: default  
 
 
+
+
 steps:
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '8' # string. Required. JDK version. Default: 8.
+    jdkArchitectureOption: 'amd64'
+    jdkSourceOption: LocalDirectory
+    jdkFile: /home/morielp/myagent/openjdk-23.0.1_linux-x64_bin.tar.gz
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.21'
+    jdkVersionOption: '1.23'
     jdkArchitectureOption: 'amd64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
